@@ -1,6 +1,11 @@
 import processing.core.PApplet;
 import java.util.Random; 
 
+/**
+* A program Sketch.java that draws a pattern of smiley faces and moleys that change colour.
+* The background can also change colours.
+* @author: L. Chen
+*/
 public class Sketch extends PApplet {
 
   public void settings() {
