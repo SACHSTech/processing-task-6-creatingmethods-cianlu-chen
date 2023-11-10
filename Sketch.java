@@ -8,17 +8,24 @@ public class Sketch extends PApplet {
   }
 
   public void setup() {
-    background(210, 255, 173);
+    background(255, 255, 255);
   }
 
   public void draw() {
+    // Changes the background colour based on the pervious colour under the cursor
+    int backgroundColour = readColour();
+    noStroke();
+    fill(backgroundColour);
+    rect(0, 0, 600, 600);
+
+    // Draws the smiley faces
     for(float yValue = 120; yValue < 600; yValue += 120){
       for(float xValue = 85; xValue < 500; xValue += 100){
         smile(xValue, yValue);
       }
     }
 
-
+    // Draws the moleys
     for(float yValue = 20; yValue < 600; yValue += 120){
       for(float xValue = 15; xValue < 600; xValue += 100){
         Random randomColour1 = new Random();
@@ -33,8 +40,9 @@ public class Sketch extends PApplet {
       }
     }
 
+    // Pauses the code for 700 milliseconds after each colour switch
     try {
-      Thread.sleep(1000);
+      Thread.sleep(700);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
@@ -44,9 +52,10 @@ public class Sketch extends PApplet {
   // Level 2
 
   /**
-   * 
-   * @param smileX
-   * @param smileY
+   * Draws a smiley face
+   * @author L. Chen
+   * @param smileX sets the X location of the smiley face
+   * @param smileY sets the Y location of the smiley face
    */
   public void smile(float smileX, float smileY){
     stroke(0, 0, 0);
@@ -61,17 +70,19 @@ public class Sketch extends PApplet {
 
   /**
    * Draws a moley
+   * @author L. Chen
    * @param moleyX sets the X value of the moley
    * @param moleyY sets the Y value of the moley
-   * @param colourR gets a random value for colour
-   * 
+   * @param colourR gets a random value for R in RGB
+   * @param colourG gets a random value for G in RGB
+   * @param colourB gets a random value for B in RGB
    */
   public void moley(float moleyX, float moleyY, float colourR, float colourG, float colourB){
     stroke(0, 0, 0);
     fill(0, 0, 0);
     rect(32 + moleyX, 6 + moleyY, 6, 20);
 
-    stroke(49, 34, 160);
+    noStroke();
     fill(colourR, colourG, colourB);
     ellipse(35 + moleyX, 46 + moleyY, 70, 60);
 
@@ -84,5 +95,17 @@ public class Sketch extends PApplet {
     fill(0, 0, 0);
     ellipse(15 + moleyX, 46 + moleyY, 15, 5);
     ellipse(55 + moleyX, 46 + moleyY, 15, 5); 
+  }
+
+
+  // Level 4
+
+  /**
+   * Gets the X and Y location of the mouse
+   * @author L. Chen
+   * @return the X and Y location of the mouse 
+   */
+  public int readColour(){
+    return get(mouseX, mouseY);
   }
 }
